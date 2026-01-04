@@ -1,0 +1,40 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+.idea
+# Test binary, build with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# IDE/Editor-specific files (examples)
+.vscode/
+.idea/
+*.swp
+
+# macOS-specific files
+.DS_Store
+
+# In case you use Node.js/npm, you want to ignore these.
+npm-debug.log
+node_modules
+
+# env
+.env
+.env.*
+!.env.example
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Misc
+temp/
+tmp/
+bin/

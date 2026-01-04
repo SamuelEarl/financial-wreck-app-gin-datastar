@@ -9,8 +9,28 @@
 # The .PHONY line keeps make from getting confused if a directory or file in your project has the same name as one of the listed targets.
 .PHONY: dev clean fmt vet build
 
+# Run the full development suite
 dev:
-	go run main.go
+# 	go run main.go
+# 	go tool air
+	go tool templ generate --watch & go tool air
+
+# TODO: Update the target commands in this file so I use the following `build` and `clean` targets instead of the ones at the bottom of this file.
+
+# # Manual build
+# build:
+# 	go tool templ generate
+# 	go build -o bin/main main.go
+
+# # Clean up generated files
+# clean:
+# 	rm -rf ./tmp
+# 	rm -rf ./bin
+# 	find . -name "*_templ.go" -delete
+
+# This has been automated in the .air.toml file >> [build] >> cmd config.
+# templgen:
+# 	go tool templ generate
 
 # Each possible operation is called a target and the following definitions are the target definitions. 
 # The word before the colon (:) is the name of the target. 
