@@ -28,6 +28,9 @@ node_modules
 .env.*
 !.env.example
 
+# Generated templ files
+*_templ.go
+
 # Log files
 *.log
 npm-debug.log*
