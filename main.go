@@ -1,10 +1,19 @@
 package main
 
 import (
+	"embed"
+
+	"financialwreck.com/app/internal/assets"
 	"financialwreck.com/app/routes"
 )
 
+//go:embed static/*
+var staticFiles embed.FS
+
 func main() {
+	// Link the embed to our helper package.
+	assets.StaticFiles = staticFiles
+
 	router := routes.SetupRouter()
 
 	// Start server on port 8080 (default)

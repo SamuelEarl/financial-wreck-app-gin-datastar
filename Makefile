@@ -10,10 +10,14 @@
 .PHONY: dev clean fmt vet build
 
 # Run the full development suite
-dev:
 # 	go run main.go
 # 	go tool air
-	go tool templ generate --watch & go tool air
+#   (go tool templ generate --watch) & (go tool air)
+# Kill any orphan processes before starting the app.
+dev:
+	-kill -9 $(lsof -t -i:8080) || true
+	-kill -9 $(lsof -t -i:4040) || true
+	go tool air
 
 # TODO: Update the target commands in this file so I use the following `build` and `clean` targets instead of the ones at the bottom of this file.
 
@@ -48,3 +52,13 @@ vet: fmt
 
 build: vet
 	go build
+
+
+# ----------------------------------------------------------------
+# Node.js processes for working with CSS icons during development
+# ----------------------------------------------------------------
+install-node-packages:
+	cd generate-css-icons && npm install
+
+generate-css-icons:
+	cd generate-css-icons && node index.js

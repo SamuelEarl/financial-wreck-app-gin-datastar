@@ -1,5 +1,7 @@
 package views
 
+import "financialwreck.com/app/internal/assets"
+
 // Layout acts as our app.html / +layout.svelte
 templ Layout(title string, contents templ.Component) {
   <!DOCTYPE html>
@@ -8,8 +10,9 @@ templ Layout(title string, contents templ.Component) {
       <meta charset="UTF-8"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <title>{ title }</title>
-      <link rel="stylesheet" href="/static/styles/main.css" />
-      <link rel="stylesheet" href="/templ/style.css" />
+      // <link rel="stylesheet" href="/static/styles/main.css" />
+      <link rel="stylesheet" href={ assets.Hash("static/styles/main.css") } />
+      <link rel="stylesheet" href="/styles/templ.css" />
       <script type="module" defer src="https://cdn.jsdelivr.net/npm/@starfederation/datastar@latest/dist/datastar.js"></script>
     </head>
     <body>

@@ -1,6 +1,7 @@
-package views
+package routes
 
 import (
+	"financialwreck.com/app/views"
 	"github.com/a-h/templ"
 	"github.com/gin-gonic/gin"
 )
@@ -12,5 +13,5 @@ import (
 // views.RenderPage(c, http.StatusOK, "Home Page", views.Home())
 func RenderPage(c *gin.Context, status int, title string, template templ.Component) {
 	c.Status(status)
-	Layout(title, template).Render(c.Request.Context(), c.Writer)
+	views.Layout(title, template).Render(c.Request.Context(), c.Writer)
 }

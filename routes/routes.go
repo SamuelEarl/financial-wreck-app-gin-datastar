@@ -1,8 +1,10 @@
 package routes
 
 import (
+	"io/fs"
 	"net/http"
 
+	"financialwreck.com/app/internal/assets"
 	"financialwreck.com/app/views"
 
 	"github.com/a-h/templ"
@@ -14,14 +16,30 @@ func SetupRouter() *gin.Engine {
 	// Create a Gin router with default middleware (logger and recovery)
 	router := gin.Default()
 
-	// Serve physical files from the /static folder
-	router.Static("/static", "./static")
+	// Serve physical files from the /static folder.
+	// If your file is at static/styles/main.css in your project:
+	// * Browser requests /static/styles/main.css?v=123.
+	// * Gin strips the query string: /static/styles/main.css.
+	// * Gin strips the route prefix (/static): styles/main.css.
+	// * Gin looks in your embed.FS for styles/main.css.
+	// * Result: 404 because the file is actually at static/styles/main.css inside the embed.
+	// This will "re-root" the filesystem using fs.Sub so that Gin can find the files without the `static/` prefix.
+	// Create a "Sub-Filesystem" that starts INSIDE the static folder.
+	// This turns "static/styles/main.css" into "styles/main.css".
+	subFS, err := fs.Sub(assets.StaticFiles, "static")
+	if err != nil {
+		panic("Critical: static folder not found in embed: " + err.Error())
+	}
+	// Serve this sub-filesystem at the /static route
+	router.StaticFS("/static", http.FS(subFS))
 
-	// Serve virtual CSS from Templ's built-in "css" blocks.
-	// Create a middleware that gathers all the Templ CSS (from the `css` functions in your templates).
+	// Serve virtual CSS from Templ's built-in `css` functions by creating a middleware that gathers all the Templ CSS (from the `css` functions in your templates).
+	// Always use a non-nil mux to prevent a 500 crash.
+	emptyMux := http.NewServeMux()
+	cssHandler := templ.NewCSSMiddleware(emptyMux)
+	// This will serve all your "css" blocks at /styles/templ.css
 	// Wrap the Templ CSS Middleware so Gin can use it.
-	// This will serve all your "css" blocks at /templ/style.css
-	router.GET("/templ/style.css", gin.WrapH(templ.NewCSSMiddleware(nil)))
+	router.GET("/styles/templ.css", gin.WrapH(cssHandler))
 
 	// Define a simple GET endpoint
 	router.GET("/", home)
@@ -36,7 +54,7 @@ func SetupRouter() *gin.Engine {
 }
 
 func home(c *gin.Context) {
-	views.RenderPage(c, 200, "Home Page", views.Home())
+	RenderPage(c, 200, "Home Page", views.Home())
 }
 
 func ping(c *gin.Context) {
@@ -47,11 +65,11 @@ func ping(c *gin.Context) {
 }
 
 func hello(c *gin.Context) {
-	views.RenderPage(c, http.StatusOK, "Hello", views.Hello("John"))
+	RenderPage(c, http.StatusOK, "Hello", views.Hello("John"))
 }
 
 func counter(c *gin.Context) {
-	views.RenderPage(c, 200, "Counter", views.Counter(0))
+	RenderPage(c, 200, "Counter", views.Counter(0))
 }
 
 // Create a struct that matches the keys you defined in your data-signals attribute in the counter.templ component.
