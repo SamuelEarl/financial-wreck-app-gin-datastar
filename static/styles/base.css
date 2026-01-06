@@ -1,0 +1,140 @@
+/* Default HTML element styles go in this file. */
+/* The `preflight.css` file clears some of the default styles for HTML elements, so you need to define default styles for your HTML elements in this file. */
+/* These form the base styles that can be modified in your .svelte files. */
+/* NOTE: I haven't been able to figure out how to get CSS nesting to work outside of Svelte components. */
+
+html,
+body {
+	font-family: var(--body-font);
+	font-size: 100%;
+	color: var(--text-color);
+	font-weight: normal;
+
+	/* Scrollbar styles */
+	::-webkit-scrollbar {
+		width: 7px;
+	}
+
+	::-webkit-scrollbar-track {
+		background-color: var(--white);
+	}
+
+	::-webkit-scrollbar-thumb {
+		background-color: var(--primary-bg);
+
+		&:hover {
+			background: color-mix(in srgb, var(--primary-bg), white 20%);
+		}
+	}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-bottom: var(--margin-bottom);
+	font-family: var(--heading-font);
+}
+
+h1 {
+	font-size: var(--size-9);
+}
+
+h2 {
+	font-size: var(--size-8);
+}
+
+h3 {
+	font-size: var(--size-7);
+}
+
+h4 {
+	font-size: var(--size-6);
+}
+
+h5 {
+	font-size: var(--size-5);
+}
+
+h6 {
+	font-size: var(--size-4);
+}
+
+p {
+	margin-bottom: var(--margin-bottom);
+}
+
+ul, ol {
+  list-style-position: outside;
+  /* This margin style will keep the space between <li> elements equal, even if those <li> elements are nested. */
+  margin: 10px 0;
+  padding-left: 30px;
+}
+
+ul {
+	list-style-type: disc;
+}
+
+ol {
+	list-style-type: decimal;
+}
+
+li {
+	margin-bottom: 10px;
+}
+
+br {
+	line-height: 0; /* Firefox adds a line-height to <br> tags, so this removes that. */
+	margin-bottom: var(--margin-bottom);
+}
+
+hr {
+	margin: 30px 0;
+	border: none;
+	border-top: var(--border);
+}
+
+/* <pre> or triple backticks. */
+pre, code {
+	font-family: var(--monospace-font);
+	border-radius: var(--radius);
+	background-color: var(--element-bg);
+}
+
+pre {
+	padding: 10px;
+	margin-bottom: var(--margin-bottom);
+	overflow-x: auto;
+}
+
+
+/* <code> or single backticks. */
+code {
+	padding: 0 2px;
+}
+
+/* --------------------------------------------------------------------- */
+/* TABLE STYLES */
+/* TODO: The following table styles should be used in a table component. */
+/* --------------------------------------------------------------------- */
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+tr {
+	border-bottom: var(--border);
+}
+
+tbody tr:last-child {
+	border-bottom: none;
+}
+
+th,
+td {
+	padding: 10px 25px;
+	text-align: left;
+	vertical-align: top;
+}

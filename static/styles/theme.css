@@ -1,0 +1,233 @@
+/* Please read the comments throughout this file for instructions on how to customize the variables to create your own theme. */
+
+/* Many of the variables in this file are referenced throughout the component library. So the *names* of these variables can NOT be altered at all. For example, you cannot change the name `--primary-bg` because `var(--primary-bg)` is referenced throughout the components. But you are allowed to change any of the variable values to match the theme you want. */
+
+/* If you change any of the CSS variable values in this file that use a length measurement (e.g. 10px, 20%, 0.5rem), then make sure to include the units after the value (e.g. px, %, rem). Some of the CSS rules in these components use the `calc()` function and they require a unit along with the length value in order to work properly. For example, this will work: `--radius: 0px;`, but this could break some styles: `--radius: 0;`. */
+
+/* Many of these ideas are borrowed from shadcn-svelte, Open Props, and Tailwind. */
+
+:where(html) {
+  /* ------------- */
+  /* COLOR PALETTE */
+  /* ------------- */
+  /* Non-Neutral Colors */
+  /* INSTRUCTIONS: You can change any of these variables, including the names. */
+  /* The following colors were taken from https://www.w3schools.com/w3css/w3css_color_metro.asp. */
+  --light-green: #99b433;
+  --green: #00a300;
+  --dark-green: #1e7145;
+  --magenta: #ff0097;
+  --light-purple: #9f00a7;
+  --purple: #7e3878;
+  --dark-purple: #603cba;
+  --teal: #00aba9;
+  --light-blue: #eff4ff;
+  --blue: #2d89ef;
+  --dark-blue: #2b5797;
+  --yellow: #ffc40d;
+  --orange: #e3a21a;
+  --dark-orange: #da532c;
+  --red: #ee1111;
+  --dark-red: #b91d47;
+
+  /* Neutral Colors */
+  /* INSTRUCTIONS: You can change any of these values, but do not change the variable names. */
+  /* NOTE: Fanny Pack does not use a transparent variable, like this `--transparent: transparent;`, because that does not make sense. Some people might want their --white or --black variables to be just a little off of pure white or black, so it makes sense to have those variables. But transparent is transparent. There is no such thing as "off transparent". */
+  --white: #ffffff;
+  --black: #000000;
+
+  /* These are shades and tints of #50404d (i.e. Purple Taupe). 
+  See https://www.colorhexa.com/50404d. */
+  --neutral-1: #f9f8f9;
+  --neutral-2: #e8e2e7;
+  --neutral-3: #d6ccd4;
+  --neutral-4: #c5b6c2;
+  --neutral-5: #b4a1b0;
+  --neutral-6: #a28b9e;
+  --neutral-7: #91758b;
+  --neutral-8: #7c6377;
+  --neutral-9: #665162;
+  --neutral-10: #50404d;
+  --neutral-11: #3a2f38;
+  --neutral-12: #241d23;
+  --neutral-13: #0f0c0e;
+
+
+  /* ----------- */
+  /* MAIN COLORS */
+  /* ----------- */
+  /* INSTRUCTIONS: All the color values in this "MAIN COLORS" section should be references to values in the "COLOR PALETTE" section above. */
+  /* NOTE: A background and foreground convention is used for colors. The background variable is used for the background color of the component and the foreground variable is used for the text color. */
+  --primary-bg: var(--dark-purple);
+  --primary-fg: var(--white);
+  --secondary-bg: var(--neutral-11);
+  --secondary-fg: var(--white);
+  --tertiary-bg: var(--white);
+  --tertiary-fg: var(--neutral-11);
+  --alert-bg: var(--dark-red);
+  --alert-fg: var(--white);
+
+  /* Notification Colors */
+  --info-bg: var(--dark-blue);
+  --info-fg: var(--white);
+  --success-bg: var(--dark-green);
+  --success-fg: var(--white);
+  --warning-bg: var(--yellow);
+  --warning-fg: var(--neutral-13);
+  --error-bg: var(--dark-red);
+  --error-fg: var(--white);
+
+
+  /* IMPORTANT NOTE */
+  /* All the color values in the sections below this line should be references to values in the "MAIN COLORS" section above. Also, references to color values throughout the app should also reference the values in the "MAIN COLORS" section as much as possible. References to colors from the "COLOR PALETTE" section should only occur when there is not a "MAIN COLOR" available for what you need. */
+
+  /* The following section contains variables for things like backgrounds, borders, typography.
+  These variables are organized in the same way that Tailwind organizes their utility classes. */
+  /* See https://tailwindcss.com/docs/installation */
+
+  /* INSTRUCTIONS: You can change any of the following values, but do not change the variable names. */
+
+  /* ------------------ */
+  /* BORDERS & OUTLINES */
+  /* ------------------ */
+  --border-width: 2px;
+  --border-style: solid;
+  --border-color: var(--neutral-4);
+  --border: var(--border-width) var(--border-style) var(--border-color);
+
+  --border-primary: var(--border-width) var(--border-style) var(--primary-bg);
+  --border-secondary: var(--border-width) var(--border-style) var(--secondary-bg);
+  --border-tertiary: var(--border-width) var(--border-style) var(--tertiary-bg);
+  
+  --radius: 3px;
+
+  --outline-none: 0px;
+  --outline-width: 1px;
+  --outline-style: solid;
+  --outline-color: var(--border-color);
+  --outline: var(--outline-width) var(--outline-style) var(--outline-color);
+  --outline-offset: 3px;
+  /* This style is not currently used, but I am leaving it here in case I want to add it to the :hover, :focus styles to add some animation. */
+  --outline-transition: all 0.1s linear; /* transition: var(--outline-transition); */
+
+
+  /* ----- */
+  /* SIZES */
+  /* ----- */
+  /* These values are used to provide sizes for fonts, padding, margins, etc. */
+  /* These sizes use a 16px base value (i.e. 1rem = 16px). */
+  /* Since each size number increments by .25rem (or 4px), you can determine the pixel size for each of these variables by multiplying the size number by 4 (e.g. --size-6 = 6 x 4px = 24px). */
+  --size-0: 0rem;
+  --size-1: .25rem;
+  --size-2: .5rem;
+  --size-3: .75rem;
+  --size-4: 1rem;
+  --size-5: 1.25rem; /* 20px */
+  --size-6: 1.5rem;
+  --size-7: 1.75rem;
+  --size-8: 2rem;
+  --size-9: 2.25rem;
+  --size-10: 2.5rem; /* 40px */
+  --size-11: 2.75rem;
+  --size-12: 3rem;
+  --size-13: 3.25rem;
+  --size-14: 3.5rem;
+  --size-15: 3.75rem; /* 60px */
+  --size-16: 4rem;
+  --size-17: 4.25rem;
+  --size-18: 4.5rem;
+  --size-19: 4.75rem;
+  --size-20: 5rem; /* 80px */
+  --size-21: 5.25rem;
+  --size-22: 5.5rem;
+  --size-23: 5.75rem;
+  --size-24: 6rem;
+  --size-25: 6.25rem; /* 100px */
+  /* --size-base is an alias for 1rem. */
+  --size-base: var(--size-4);
+
+
+  /* ----------------- */
+  /* PADDING & MARGINS */
+  /* ----------------- */
+  --padding-v-default: var(--size-2);
+  --padding-h-default: var(--size-3);
+  --margin-bottom: var(--size-4);
+  
+
+  /* ---------- */
+  /* TYPOGRAPHY */
+  /* ---------- */
+  /* Font Families */
+  --heading-font: "Designers Bold", serif;
+  --body-font: "Proxima Nova", sans-serif;
+  --monospace-font: "Source Code Pro", "monospace";
+
+  /* Line Heights */
+  /* These line-height variables are borrowed from Open Props. */
+  --line-height-00: .95;
+  --line-height-0: 1.1;
+  --line-height-1: 1.25;
+  --line-height-2: 1.375;
+  --line-height-3: 1.5;
+  --line-height-4: 1.75;
+  --line-height-5: 2;
+
+  /* Text Colors */
+  --text-color: var(--neutral-11);
+  --placeholder-text-color: var(--neutral-7);
+
+
+  /* ----------- */
+  /* BOX SHADOWS */
+  /* ----------- */
+  /* TODO: Look at Open Props for box-shadows that work with both light and dark themes. */
+  --box-shadow-default: 0 0 0 2px var(--border-color);
+  --box-shadow-primary: 0 0 0 2px var(--primary-bg);
+  --box-shadow-secondary: 0 0 0 2px var(--secondary-bg);
+  --box-shadow-tertiary: 0 0 0 2px var(--tertiary-bg);
+  --box-shadow-depth: 0 3px 5px 5px rgba(0, 0, 0, 0.25);
+
+  
+  /* ----------------------- */
+  /* DEFAULT ELEMENT STYLES  */
+  /* (not including buttons) */
+  /* ----------------------- */
+  --element-bg: var(--neutral-2);    /* background color */
+  --element-fg: var(--text-color);   /* foreground color */
+  --element-br: var(--border-color); /* border color */
+  --element-ol: var(--border-color); /* outline color */
+
+
+  /* --------------- */
+  /* Disabled Styles */
+  /* --------------- */
+  --element-bg-disabled: var(--neutral-4);
+  --element-border-color-disabled: var(--element-bg-disabled);
+  --element-text-color-disabled: var(--neutral-1);
+
+  /* This is how to use this variable: filter: var(--disabled-filter); */
+  /* Multiple filters can be added. See https://www.w3schools.com/cssref/css3_pr_filter.php */
+  /* --inverted: 65%;
+  --brightness: 175%;
+  --disabled-filter: invert(var(--inverted)) brightness(var(--brightness)); */
+  --disabled-btn-filter: brightness(65%);
+
+
+  /* ----------------------- */
+  /* MEDIA QUERIES VARIABLES */
+  /* ----------------------- */
+  /* These variables are the same as the media query @custom-media values for breakpoints. */
+  /* These can be used to set widths for elements that are responsively designed. */
+  --xs-min: 0px;
+  --xs-max: 639px;
+  --sm-min: 640px;
+  --sm-max: 767px;
+  --md-min: 768px;
+  --md-max: 1023px;
+  --lg-min: 1024px;
+  --lg-max: 1279px;
+  --xl-min: 1280px;
+  --xl-max: 1535px;
+  --xxl-min: 1536px;
+}

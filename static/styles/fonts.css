@@ -1,0 +1,81 @@
+/* This file should include font definitions and styles for those font definitions. */
+
+@font-face {
+  font-family: "Designers Bold";
+  src: local("Designers Bold"),
+    url("/fonts/designers-bold/DesignersBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+
+
+/* Look at the `stylesheet-example.css` file in the `proxima-nova` folder for the following code examples: */
+/* For the `font-weight` properties, use the number value rather than the name. If you use the name then other font weights seem to get messed up. See "Common weight name mapping: https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#common_weight_name_mapping */
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("/fonts/proxima-nova/ProximaNova-Thin.eot");
+  src: local("Proxima Nova Thin"), local("ProximaNova-Thin"),
+    url("/fonts/proxima-nova/ProximaNova-Thin.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/proxima-nova/ProximaNova-Thin.woff2") format("woff2"),
+    url("/fonts/proxima-nova/ProximaNova-Thin.woff") format("woff"),
+    url("/fonts/proxima-nova/ProximaNova-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("/fonts/proxima-nova/ProximaNova-Light.eot");
+  src: local("Proxima Nova Light"), local("ProximaNova-Light"),
+    url("/fonts/proxima-nova/ProximaNova-Light.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/proxima-nova/ProximaNova-Light.woff2") format("woff2"),
+    url("/fonts/proxima-nova/ProximaNova-Light.woff") format("woff"),
+    url("/fonts/proxima-nova/ProximaNova-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("/fonts/proxima-nova/ProximaNova-Regular.eot");
+  src: local("Proxima Nova Regular"), local("ProximaNova-Regular"),
+    url("/fonts/proxima-nova/ProximaNova-Regular.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/proxima-nova/ProximaNova-Regular.woff2") format("woff2"),
+    url("/fonts/proxima-nova/ProximaNova-Regular.woff") format("woff"),
+    url("/fonts/proxima-nova/ProximaNova-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("/fonts/proxima-nova/ProximaNova-Bold.eot");
+  src: local("Proxima Nova Bold"), local("ProximaNova-Bold"),
+    url("/fonts/proxima-nova/ProximaNova-Bold.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/proxima-nova/ProximaNova-Bold.woff2") format("woff2"),
+    url("/fonts/proxima-nova/ProximaNova-Bold.woff") format("woff"),
+    url("/fonts/proxima-nova/ProximaNova-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("/fonts/proxima-nova/ProximaNova-Black.eot");
+  src: local("Proxima Nova Black"), local("ProximaNova-Black"),
+    url("/fonts/proxima-nova/ProximaNova-Black.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/proxima-nova/ProximaNova-Black.woff2") format("woff2"),
+    url("/fonts/proxima-nova/ProximaNova-Black.woff") format("woff"),
+    url("/fonts/proxima-nova/ProximaNova-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+
+@font-face {
+	font-family: "Source Code Pro";
+	src: local("Source Code Pro"),
+		url("/fonts/source-code-pro/SourceCodePro-Regular.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}

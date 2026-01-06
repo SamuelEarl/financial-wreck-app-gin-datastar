@@ -1,6 +1,8 @@
 package main
 
-import "financialwreck.com/app/routes"
+import (
+	"financialwreck.com/app/routes"
+)
 
 func main() {
 	router := routes.SetupRouter()

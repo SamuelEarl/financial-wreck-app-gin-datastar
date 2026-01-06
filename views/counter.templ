@@ -1,0 +1,13 @@
+package views
+
+import "fmt"
+
+templ Counter(count int) {
+  <div id="container" data-signals={ "{ count: " + fmt.Sprint(count) + " }" }>
+    <p>Current Count: <span data-text="$count"></span></p>
+    
+    <button data-on-click="@post('/increment')">
+      Increment
+    </button>
+  </div>
+}

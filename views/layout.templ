@@ -1,0 +1,26 @@
+package views
+
+// Layout acts as our app.html / +layout.svelte
+templ Layout(title string, contents templ.Component) {
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>{ title }</title>
+      <link rel="stylesheet" href="/static/styles/main.css" />
+      <link rel="stylesheet" href="/templ/style.css" />
+      <script type="module" defer src="https://cdn.jsdelivr.net/npm/@starfederation/datastar@latest/dist/datastar.js"></script>
+    </head>
+    <body>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/counter">Counter (Datastar)</a>
+      </nav>
+      <main>
+        @contents  // This is like the <slot /> in Svelte
+      </main>
+    </body>
+  </html>
+}

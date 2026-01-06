@@ -1,0 +1,124 @@
+/*
+----------------------------
+MEDIA QUERIES
+----------------------------
+This file contains the Custom Media Queries (https://www.w3.org/TR/mediaqueries-5/#custom-mq) that can be used for your breakpoints and resolutions (i.e. testing pixel densities of output devices).
+
+NOTE: This file is not imported into the main.css file. Rather, it has to be imported into the `/svelte.config.js` file so it can be processed by PostCSS. Once `@custom-media` queries become a well-supported standard, then I could import this into the main.css file.
+*/
+
+/*
+----------------------------
+Breakpoints
+----------------------------
+----------------------------
+Usage examples:
+----------------------------
+
+@media (--xs-up) {
+  .selector {
+    padding: 15px;
+  }
+}
+
+@media (--md-up) {
+  .selector {
+    padding: 20px;
+  }
+}
+
+@media (--xl-min) and (--xl-max) {
+  .selector {
+    padding: 25px;
+  }
+}
+
+------------------------------------------------------------------------------------------------
+Media Query Breakpoints - Borrowed from Tailwind CSS (https://tailwindcss.com/docs/breakpoints)
+------------------------------------------------------------------------------------------------
+xsmall: 0px - 639px | Extra small devices (phones, 600px and smaller)
+small  : 640px - 767px | Small devices (portrait tablets and large phones, 601px and larger)
+medium : 768px - 1023px | Medium devices (landscape tablets, 768px and larger)
+large  : 1024px - 1279px | Large devices (laptops/desktops, 993px and larger)
+xlarge: 1280px - 1535px | Extra large devices (large laptops and desktops, 1200px and larger)
+xxlarge: 1536px and larger
+
+-------------------------------------------------------------------
+For reference, here are the viewport sizes of some common devices:
+-------------------------------------------------------------------
+* iPhone 8: 375px wide x 667px high (xsmall range)
+* iPad (in portrait mode): 768px wide x 1024px high (medium range)
+* iPad Pro (in portrait mode): 1024px wide x 1366px high (large range)
+* Macbook Pro 15": 1440px wide x 900px high (xlarge range)
+*/
+
+/*
+NOTES:
+(1) The preferred way to use media queries when creating style rules in your Svelte components is to use the @custom-media rules that have `up` in the name (e.g. --xs-up, --sm-up, etc). The `min` and `max` @custom-media rules are available for situations where you might need to create styles for only one viewport size. For example: @media (--xl-min) and (--xl-max) {...}
+(2) To be explicit with your CSS styles, please use the --xs-up @custom-media rule to define all base styles in your component. Then use the larger breakpoints to change styles for larger viewports, when necessary. This also helps to align the styles for different viewports with each other.
+(3) I usually create styles for the xs, md, and xl breakpoints and then use the other breakpoints for special or unique cases.
+*/
+
+@custom-media --xs-up (min-width: 0px);
+@custom-media --xs-min (min-width: 0px);
+@custom-media --xs-max (max-width: 639px);
+
+@custom-media --sm-up (min-width: 640px);
+@custom-media --sm-min (min-width: 640px);
+@custom-media --sm-max (max-width: 767px);
+
+@custom-media --md-up (min-width: 768px);
+@custom-media --md-min (min-width: 768px);
+@custom-media --md-max (max-width: 1023px);
+
+@custom-media --lg-up (min-width: 1024px);
+@custom-media --lg-min (min-width: 1024px);
+@custom-media --lg-max (max-width: 1279px);
+
+@custom-media --xl-up (min-width: 1280px);
+@custom-media --xl-min (min-width: 1280px);
+@custom-media --xl-max (max-width: 1535px);
+
+@custom-media --xxl-up (min-width: 1536px);
+
+
+/*
+----------------------------
+Resolutions (i.e. checking pixel densities of output devices)
+
+You can use a breakpoint media query in combination with a resolution media query for the `background-image` property so standard displays will download standard resolution images and HiDPI displays (a.k.a. retina displays) will download higher resolution images.
+----------------------------
+----------------------------
+Usage example:
+----------------------------
+
+@media (--xs-up) {
+  @media (--standard-res) {
+    .hero-image {
+      background-image: url("/images/standard-res-image.webp");
+    }
+  }
+
+  @media (--high-res) {
+    .hero-image {
+      background-image: url("/images/high-res-image.webp");
+    }
+  }
+}
+
+IMAGE LOADING & PERFORMANCE NOTES:
+* The images for retina displays need to be 2x resolution, which means that the image has twice the width and twice the height of a standard "1x" image, resulting in a total of four times the number of pixels. You can use a free AI image upscaler online to convert standard-resolution images to high-resolution images. For example, Pixelcut.ai has a free image upscaler: https://www.pixelcut.ai/image-upscaler. Pixelcut.ai says that you have 3 downloads per day, but something is wrong with that feature because you are not able to download more than once. This is what you can do to fix that:
+    * In Pexelcut.ai, go to the dashboard by clicking the "Create" button. 
+    * Click the "Upscale" feature.
+    * Upload an image.
+    * Select the upscale ratio that you want and click "Upscale".
+    * After the image has completed the upscale process, press F12 to open DevTools.
+    * Under the "Elements" tab, expand the HTML elements until you find an <img> element. Note that there are 2 <img> elements in the DOM: The original that you uploaded and the scaled version. It looks like the first <img> listed in the DOM is the scaled version.
+    * Copy the src URL of the scaled image and paste it in another tab.
+    * Right click the image, select "Save image as...", and save your image to your desktop.
+* WebP now has broad support in the latest versions of major web browsers. If you don't need to support older browsers, then you can use WebP images throughout your web app instead of providing JPG or PNG fallbacks. (See https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Image_types#webp_image.)
+* Use the appropriate browser cache strategy for your app so that images load quickly. If your content does not change too often (i.e. if you are not a news site, for example), then make sure that your app will cache images in the user's browser. This way if the same image is needed again, the browser doesn't have to go over the network to get it, which is a massive performance boost for repeat viewings. Web browsers cache images by default, but you can change how the browser should cache images. Learn more at https://www.hostwinds.com/blog/what-is-browser-cache.
+* Implement lazy loading for images, which is how you can avoid loading all the images on a page at once. Lazy loading means waiting to download an image until it is in or near the viewport. So, for example, an image way far down the page won't load if the user never scrolls there.
+*/
+@custom-media --standard-res (max-resolution: 191dpi);
+@custom-media --high-res (min-resolution: 192dpi);

@@ -1,0 +1,17 @@
+package views
+
+// This is a Go function that returns a unique class name
+css CardStyle() {
+  background-color: #ffffff;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+templ Home() {
+  <div class={ CardStyle() }>
+    <h1>Welcome to the Home Page</h1>
+    <p>This content is wrapped in the layout.</p>
+  </div>
+}
