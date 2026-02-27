@@ -2,8 +2,13 @@ package views
 
 import "financialwreck.com/site/internal/assets"
 
+css activeLinkStyle() {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 // Layout acts as our app.html / +layout.svelte
-templ Layout(title string, contents templ.Component) {
+templ Layout(currentPath string, title string, contents templ.Component) {
   <!DOCTYPE html>
   <html lang="en">
     <head>
@@ -20,9 +25,9 @@ templ Layout(title string, contents templ.Component) {
     </head>
     <body>
       <nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/counter">Counter (Datastar)</a>
+        <a href="/" class={ templ.Classes("", templ.KV(activeLinkStyle(), currentPath == "/")) }>Home</a>
+        <a href="/about" class={ templ.Classes("", templ.KV(activeLinkStyle(), currentPath == "/about")) }>About</a>
+        <a href="/counter" class={ templ.Classes("", templ.KV(activeLinkStyle(), currentPath == "/counter")) }>Counter (Datastar)</a>
       </nav>
       <main>
         @contents  // This is like the <slot /> in Svelte

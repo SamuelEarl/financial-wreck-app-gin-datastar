@@ -13,5 +13,6 @@ import (
 // views.RenderPage(c, http.StatusOK, "Home Page", views.Home())
 func RenderPage(c *gin.Context, status int, title string, template templ.Component) {
 	c.Status(status)
-	views.Layout(title, template).Render(c.Request.Context(), c.Writer)
+	path := c.Request.URL.Path
+	views.Layout(path, title, template).Render(c.Request.Context(), c.Writer)
 }
